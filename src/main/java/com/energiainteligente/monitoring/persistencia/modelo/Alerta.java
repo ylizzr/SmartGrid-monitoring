@@ -7,9 +7,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
 @Entity
+@Table(name = "alerta")
+@Getter @Setter
 public class Alerta {
 
     @Id
@@ -28,10 +28,14 @@ public class Alerta {
 
     @Column(name = "nivel_severidad")
     private String nivelSeveridad;
-
     @Column(name = "fecha_hora")
     private LocalDateTime fechaHora;
 
-    @Column(name = "estado")
-    private String estado;
+
+    public enum TipoAlerta {
+        Emergencia,
+        Advertencia,
+        Mantenimiento
+    }
+
 }

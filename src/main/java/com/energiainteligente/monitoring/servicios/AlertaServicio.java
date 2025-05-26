@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,12 +23,14 @@ public class AlertaServicio {
 
     public Alerta guardar(Alerta alerta) {
         try {
+            alerta.setFechaHora(LocalDateTime.now()); // asigna la fecha actual
             return repositorio.save(alerta);
         } catch (Exception e) {
             log.error("Error al guardar alerta: {}", e.getMessage());
             throw new RuntimeException("Error al guardar alerta", e);
         }
     }
+
 
     public List<Alerta> findAll() {
         try {
